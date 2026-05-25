@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base Backgrounds and Foregrounds */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    
+    /* Brand Colors */
+    --primary: 0 100% 43%; /* #DC143C - Crimson Red */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 240 100% 27%; /* #00008B - Dark Blue */
+    --secondary-foreground: 0 0% 100%;
+    
+    --accent: 33 100% 50%; /* #FF8C00 - Dark Orange */
+    --accent-foreground: 0 0% 100%;
+    
+    /* Supporting Colors */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 0 100% 43%; /* Matches Primary */
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark mode surfaces */
+    --background: 240 10% 4%; /* Deep dark blue/gray */
+    --foreground: 210 40% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 210 40% 98%;
+    
+    /* Brand Colors for Dark Mode */
+    --primary: 0 90% 55%; /* Lighter red for dark mode contrast */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 225 40% 20%; /* Muted dark blue for dark mode surface elements */
+    --secondary-foreground: 210 40% 98%;
+    
+    --accent: 33 90% 55%; 
+    --accent-foreground: 0 0% 100%;
+    
+    /* Supporting Colors */
+    --muted: 240 10% 12%;
+    --muted-foreground: 215 20% 65%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 10% 15%;
+    --input: 240 10% 15%;
+    --ring: 0 90% 55%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.625;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    color: hsl(var(--foreground));
+  }
+
+  h1 { font-size: 2.75rem; line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; }
+  h2 { font-size: 2.25rem; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; }
+  h3 { font-size: 1.75rem; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; }
+  h4 { font-size: 1.25rem; line-height: 1.4; font-weight: 600; }
+
+  @media (min-width: 768px) {
+    h1 { font-size: 4rem; }
+    h2 { font-size: 3rem; }
+    h3 { font-size: 2rem; }
+  }
+
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .news-card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .step-indicator-active {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .step-indicator-completed {
+    @apply bg-primary/20 text-primary border-primary;
+  }
+
+  .step-indicator-pending {
+    @apply bg-muted text-muted-foreground;
+  }
+
+  .file-upload-zone {
+    @apply border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-300;
+  }
+
+  .file-upload-zone:hover {
+    @apply border-primary bg-primary/5;
+  }
+
+  .file-upload-zone.dragging {
+    @apply border-primary bg-primary/10 scale-105;
+  }
+
+  .progress-bar {
+    @apply h-2 bg-muted rounded-full overflow-hidden;
+  }
+
+  .progress-bar-fill {
+    @apply h-full bg-primary transition-all duration-500 ease-out;
+  }
+
+  .form-input {
+    @apply bg-background text-foreground;
+  }
+
+  .registration-card {
+    @apply bg-card border border-border rounded-2xl p-6 shadow-lg;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.4s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
